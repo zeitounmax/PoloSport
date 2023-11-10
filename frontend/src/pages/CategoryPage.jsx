@@ -6,7 +6,6 @@ import { useAuth } from "../contexts/AuthContext";
 
 function CategoryPage() {
   const { token } = useAuth();
-
   const { categoryName } = useParams();
   const { videos } = useContext(VideoContext);
   const categoryNameToIdMap = {
@@ -19,45 +18,33 @@ function CategoryPage() {
 
   const categoryId = categoryNameToIdMap[categoryName];
   const getVideosByCategory = (idCategory) => {
-    const categoryVideos = videos.filter(
-      (video) => video.id_category === idCategory
-    );
-
-    return categoryVideos;
+    return videos.filter((video) => video.id_category === idCategory);
   };
 
-  const videoElements = getVideosByCategory(categoryId).map((video) =>
-    video.is_public || (!video.is_public && token) ? (
-      <div key={video.id} className="thumbnail">
-        <Link
-          key={`${video.id}`}
-          to={`/videos/${video.id}`}
-          style={{ textDecoration: "none" }}
-        >
-          <h2 className="legend">{video.title}</h2>
-          <img
-            src={video.thumbnail_url}
-            alt={video.title}
-            className="imgCategory"
-          />
-        </Link>
-      </div>
-    ) : (
-      <div key={video.id} className="thumbnail">
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <h2 className="legend">
-            Pour regarder {video.title} il faut se connecter.
-          </h2>
-          <img src={Logo} alt="Connecte Toi" className="logo-f" />
-        </Link>
-      </div>
-    )
-  );
+  const videoElements = getVideosByCategory(categoryId).map((video) => (
+    <div key={video.id} className="thumbnail">
+      <Link to={`/videos/${video.id}`} className="no-underline text-white">
+        <h2 className="text-xl font-bold mb-2">{video.title}</h2>
+        <img
+          src={video.is_public || token ? video.thumbnail_url : Logo}
+          alt={video.title}
+          className="imgCategory"
+        />
+        {!video.is_public && !token && (
+          <p className="text-sm">
+            Pour regarder {video.title}, il faut se connecter.
+          </p>
+        )}
+      </Link>
+    </div>
+  ));
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1 className="titleCategory">{categoryName}</h1>
-      <div className="thumbnails-container">{videoElements}</div>
+    <div className="text-center bg-custom-dark"> 
+      <h1 className="titleCategory text-3xl font-bold mb-4 text-white">{categoryName}</h1>
+      <div className="thumbnails-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {videoElements}
+      </div>
     </div>
   );
 }

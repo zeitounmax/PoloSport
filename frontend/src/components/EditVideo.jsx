@@ -89,66 +89,65 @@ function EditVideo() {
   };
 
   return (
-    <div className="edit-video-container">
-      <div className="category-section">
-        <h1>Modifier une vidéo</h1>
-        <label htmlFor="choiceCategory">Catégorie :</label>
-        <select
-          className="selectCategory"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-        >
-          <option value="">-- Toutes les vidéos : --</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.title}>
-              {category.id} {category.title}
-            </option>
-          ))}
-        </select>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-lg w-full">
+        <h1 className="text-2xl font-semibold mb-6">Modifier une vidéo</h1>
 
-        <div className="action-section">
-          <button type="button" onClick={handleUpdateVideos}>
+        <div className="mb-4">
+          <label htmlFor="choiceCategory" className="block text-sm font-medium text-gray-600">Catégorie :</label>
+          <select className="mt-2 p-3 w-full border rounded-md" value={selectedCategory} onChange={handleCategoryChange}>
+            <option value="">-- Toutes les vidéos : --</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.title}>
+                {category.id} {category.title}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="action-section mt-4">
+          <button type="button" onClick={handleUpdateVideos} className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition">
             Modifier vidéo sélectionnée
           </button>
-          {message && <p>{message}</p>}
+          {message && <p className="text-center mt-4 text-green-500">{message}</p>}
         </div>
 
         {videos
           .filter((video) =>
             selectedCategory
               ? video.id_category === categoryNameToIdMap[selectedCategory]
-              : video.id
+              : video
           )
           .map((video) => (
-            <div className="onceVideo" key={video.id}>
+            <div className="p-4 mb-4 border rounded-md" key={video.id}>
               <input
                 type="checkbox"
                 checked={selectedVideos.includes(video.id)}
                 onChange={(e) => handleVideoCheckboxChange(e, video.id)}
               />
-              <span>{video.title}</span>
-              <h5>{video.description}</h5>
-              <div>
-                <label htmlFor={`updatedTitle_${video.id}`}>
-                  Nouveau titre :
-                </label>
+              <span className="ml-2">{video.title}</span>
+              <h5 className="mt-2">{video.description}</h5>
+
+              <div className="mt-2">
+                <label htmlFor={`updatedTitle_${video.id}`} className="block text-sm font-medium text-gray-600">Nouveau titre :</label>
                 <input
                   type="text"
                   id={`updatedTitle_${video.id}`}
                   name="title"
                   value={video.title}
                   onChange={(e) => handleFieldChange(e, video.id)}
+                  className="mt-2 p-3 w-full border rounded-md"
                 />
               </div>
-              <div>
-                <label htmlFor={`updatedDescription_${video.id}`}>
-                  Nouvelle description :
-                </label>
+
+              <div className="mt-2">
+                <label htmlFor={`updatedDescription_${video.id}`} className="block text-sm font-medium text-gray-600">Nouvelle description :</label>
                 <textarea
                   id={`updatedDescription_${video.id}`}
                   name="description"
                   value={video.description}
                   onChange={(e) => handleFieldChange(e, video.id)}
+                  className="mt-2 p-3 w-full border rounded-md"
                 />
               </div>
             </div>

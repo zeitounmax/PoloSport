@@ -26,7 +26,7 @@ function Home() {
   const hockeyVideos = getVideosByCategory(5);
 
   return (
-    <div>
+    <div className=" bg-gray-50 dark:bg-gray-900 text-white">
       <VideoCarousel
         slideNumber={3}
         videos={suggestedVideos}

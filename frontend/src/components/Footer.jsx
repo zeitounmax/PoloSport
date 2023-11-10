@@ -1,33 +1,26 @@
-import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../images/logo RGB Original Digital.png";
 
 function Footer() {
   return (
-    <footer className="footer-distributed">
-      <h3>
-        <img
-          className="logoFooter"
-          src="/src/images/logo RGB Original Digital.png"
-          alt="logo"
-        />
-      </h3>
-      <p className="footer-company-name">
-        Company Name © 2013 - 2021 Origins. All rights reserved
-      </p>
-      <div className="footer-icons">
-        <a
-          href="https://www.linkedin.com/company/origins-digital-emg/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaLinkedinIn />
-        </a>
-        <a
-          href="https://github.com/WildCodeSchool/2023-02-JS-Reims-project-3-origins-digital"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaGithub />
-        </a>
+    <footer className="flex justify-between items-center dark:bg-gray-900 p-4  bg-custom-dark">
+      <div className="mx-auto">
+        <Link to="/">
+          <img src={Logo} alt="Logo Origins Digital" className="w-30" />
+        </Link>
+      </div>
+
+      <div className="flex items-center space-x-4  bg-custom-dark">
+        <Link to="/about" className="text-sm text-gray-700 dark:text-gray-300">
+          À propos
+        </Link>
+        <Link to="/contact" className="text-sm text-gray-700 dark:text-gray-300">
+          Contact
+        </Link>
+        <Link to="/terms" className="text-sm text-gray-700 dark:text-gray-300">
+          Termes et Conditions
+        </Link>
       </div>
     </footer>
   );

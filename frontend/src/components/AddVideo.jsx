@@ -76,64 +76,47 @@ function AddVideo() {
     }
   };
 
-  return (
-    <div className="add-video-container">
-      <h1>Ajouter une vidéo</h1>
+	return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-md w-full">
+        <h1 className="text-2xl font-semibold mb-6">Ajouter une vidéo</h1>
 
-      <div>
-        <label htmlFor="title">Titre :</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={handleTitleChange}
-        />
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-sm font-medium text-gray-600">Titre</label>
+          <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-sm font-medium text-gray-600">Description</label>
+          <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="url" className="block text-sm font-medium text-gray-600">URL</label>
+          <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="thumbnailUrl" className="block text-sm font-medium text-gray-600">URL de la vignette</label>
+          <input type="text" id="thumbnailUrl" value={thumbnailUrl} onChange={(e) => setThumbnailUrl(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="time" className="block text-sm font-medium text-gray-600">Durée</label>
+          <input type="text" id="time" value={time} onChange={(e) => setTime(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="categoryId" className="block text-sm font-medium text-gray-600">ID de catégorie</label>
+          <input type="text" id="categoryId" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="mt-2 p-3 w-full border rounded-md" />
+        </div>
+
+        <button type="button" onClick={handleAddVideo} className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition">
+          Ajouter vidéo
+        </button>
+
+        {message && <p className="text-center mt-4 text-green-500">{message}</p>}
       </div>
-
-      <div>
-        <label htmlFor="description">Description :</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={handleDescriptionChange}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="url">URL :</label>
-        <input type="text" id="url" value={url} onChange={handleUrlChange} />
-      </div>
-
-      <div>
-        <label htmlFor="thumbnailUrl">URL de la vignette :</label>
-        <input
-          type="text"
-          id="thumbnailUrl"
-          value={thumbnailUrl}
-          onChange={handleThumbnailUrlChange}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="time">Durée :</label>
-        <input type="text" id="time" value={time} onChange={handleTimeChange} />
-      </div>
-
-      <div>
-        <label htmlFor="categoryId">ID de catégorie :</label>
-        <input
-          type="text"
-          id="categoryId"
-          value={categoryId}
-          onChange={handleCategoryIdChange}
-        />
-      </div>
-
-      <button type="button" onClick={handleAddVideo}>
-        Ajouter vidéo
-      </button>
-
-      {message && <p>{message}</p>}
     </div>
   );
 }

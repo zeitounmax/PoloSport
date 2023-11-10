@@ -8,19 +8,23 @@ function CategoryBar() {
     { name: "Natation", icon: "pool" },
     { name: "Hockey", icon: "sports_hockey" },
   ];
+
   return (
-    <nav className="category-bar">
+    <nav className="flex flex-col fixed top-0 left-0 w-20 h-full bg-black items-center md:w-20">
       {sports.map((sport) => (
         <Link
           key={sport.name}
-          className="category-button"
+          className="flex flex-col items-center text-white no-underline cursor-pointer py-3"
           to={`/category/${sport.name}`}
         >
-          <span className="material-icons">{sport.icon}</span>
-          {sport.name}
+          <span className="material-icons text-white text-3xl">
+            {sport.icon}
+          </span>
+          <span className="text-xs">{sport.name}</span>
         </Link>
       ))}
     </nav>
   );
 }
+
 export default CategoryBar;

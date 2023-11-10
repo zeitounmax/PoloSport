@@ -49,52 +49,62 @@ function Header() {
   };
 
   return (
-    <header className="header">
-      {token ? (
-        <button
-          type="button"
-          to="/"
-          className="header_button"
-          onClick={handleLogout}
-        >
-          Déconnexion
-        </button>
-      ) : (
-        <Link to="/login" className="header_button">
-          Connexion
+    <header className="flex justify-between items-center bg-gray-50 dark:bg-gray-900 p-4">
+      {/* Logo centré */}
+      <div className="mx-auto">
+        <Link to="/">
+          <img src={Logo} alt="Logo Origins Digital" className="w-32 md:w-48" />
         </Link>
-      )}
-      <Link to="/">
-        <img src={Logo} alt="logo Origins digital" className="headerLogo" />
-      </Link>
-      {isAdmin && token && (
-        <Link to={isAdmin ? "/admin" : "/"} className="header_button">
-          Administration
-        </Link>
-      )}
+      </div>
 
-      <div className="search-container">
-        <button
-          type="button"
-          className={`category-button search-button ${
-            searchVisible ? "active" : ""
-          }`}
-          onClick={handleButtonClick}
-          ref={searchButtonRef}
-        >
-          <span className="material-icons search-icon-color">search</span>
-          <span className="search-text search-text-color">Rechercher</span>
-        </button>
+      {/* Zone de droite avec les boutons */}
+      <div className="flex items-center space-x-4">
+        {/* Zone de recherche */}
         {searchVisible && (
-          <form className="search-form" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex">
             <input
               type="text"
               placeholder="Rechercher"
               value={search}
               onChange={handleSearchChange}
               ref={inputRef}
+              className="p-2 rounded"
             />
+            <button
+              type="submit"
+              className="p-2 bg-blue-500 text-white rounded"
+            >
+              Go
+            </button>
           </form>
+        )}
+        <button
+          ref={searchButtonRef}
+          onClick={handleButtonClick}
+          className="p-2 bg-blue-500 text-white rounded"
+        >
+          Rechercher
+        </button>
+
+        {/* Bouton Connexion/Déconnexion */}
+        {token ? (
+          <button
+            onClick={handleLogout}
+            className="p-2 bg-blue-500 text-white rounded"
+          >
+            Déconnexion
+          </button>
+        ) : (
+          <Link to="/login" className="p-2 bg-blue-500 text-white rounded">
+            Connexion
+          </Link>
+        )}
+
+        {/* Bouton Administration */}
+        {isAdmin && token && (
+          <Link to="/admin" className="p-2 bg-blue-500 text-white rounded">
+            Administration
+          </Link>
         )}
       </div>
     </header>

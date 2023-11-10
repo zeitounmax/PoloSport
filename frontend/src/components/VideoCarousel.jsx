@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import Logo from "../images/logo RGB Original Digital.png";
+import Logo from "../images/logo RGB Original Digital.png"; 
 
 function VideoCarousel({ videos, name, slideNumber }) {
   const { token } = useAuth();
 
   const [slideNum, setSlideNum] = useState(slideNumber);
+
   useEffect(() => {
     const updateSlidesNumber = () => {
       setSlideNum(window.innerWidth <= 768 ? 1 : slideNumber);
@@ -20,8 +21,9 @@ function VideoCarousel({ videos, name, slideNumber }) {
       window.removeEventListener("resize", updateSlidesNumber);
     };
   }, [slideNumber]);
+
   return (
-    <div className="video-carousel">
+    <div className="video-carousel ml-26 mr-26 md:ml-24 md:mr-25">
       <h1 className="nameCarousel">{name}</h1>
       <Carousel
         showStatus={false}
@@ -42,7 +44,7 @@ function VideoCarousel({ videos, name, slideNumber }) {
       >
         {videos.map((video) =>
           video.is_public || (!video.is_public && token) ? (
-            <Link key={`${video.id}`} to={`/videos/${video.id}`}>
+            <Link key={video.id} to={`/videos/${video.id}`}>
               <img
                 className="imgCarousel"
                 src={video.thumbnail_url}
@@ -52,13 +54,13 @@ function VideoCarousel({ videos, name, slideNumber }) {
             </Link>
           ) : (
             <Link
-              key={`${video.id}`}
+              key={video.id}
               to="/login"
               style={{ textDecoration: "none" }}
             >
-              <img className="logo-f" src={Logo} alt="connecte toi" />
+              <img className="logo-f" src={Logo} alt="Connectez-vous pour voir" />
               <p className="legend">
-                Pour regarder {video.title} il faut se connecter.
+                Pour regarder {video.title}, il faut se connecter.
               </p>
             </Link>
           )
@@ -71,12 +73,10 @@ function VideoCarousel({ videos, name, slideNumber }) {
 VideoCarousel.propTypes = {
   videos: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
-      description: PropTypes.string,
-      url: PropTypes.string,
-      thumbnailUrl: PropTypes.string,
-      time: PropTypes.string,
-      idCategory: PropTypes.number,
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      thumbnail_url: PropTypes.string.isRequired,
+      is_public: PropTypes.bool.isRequired,
     })
   ).isRequired,
   name: PropTypes.string.isRequired,
