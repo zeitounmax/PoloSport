@@ -20,11 +20,3 @@ For the use of the project
  - Start the server with 	```npm run dev```
 
 
-## Team
-- Kika051 : https://github.com/Kika051
-- tetsuya51 : https://github.com/tetsuya51
-- Zeitounmax: https://github.com/zeitounmax
-- JulienBenoit7: https://github.com/JulienBenoit7
-- Maachino : https://github.com/Maachino
-
-
