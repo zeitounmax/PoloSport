@@ -39,7 +39,7 @@ function VideoComponent() {
   };
 
   return video.is_public || (!video.is_public && token) ? (
-    <div className="flex flex-col items-center bg-custom-dark p-4">
+    <div className="flex flex-col items-center bg-custom-dark p-10">
       <h2 className="text-2xl font-semibold mb-4 text-white">{video.title}</h2>
       <iframe
         className="w-full max-w-[800px] h-auto aspect-[800/640]"
