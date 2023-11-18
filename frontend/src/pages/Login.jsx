@@ -32,7 +32,10 @@ function Login() {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Une erreur s'est produite lors de la récupération de la vidéo :", error);
+        console.error(
+          "Une erreur s'est produite lors de la récupération de la vidéo :",
+          error
+        );
       });
   };
 
@@ -82,12 +85,9 @@ function Login() {
         </button>
 
         <div className="text-center mt-4">
-           <p>Vous  n'avez pas un compte ? </p>
-					 <Link
-            to="/inscription"
-            className="text-blue-500 hover:underline"
-          >S'inscrire
-            
+          <p>Vous n'avez pas un compte ? </p>
+          <Link to="/inscription" className="text-blue-500 hover:underline">
+            S'inscrire
           </Link>
         </div>
       </form>

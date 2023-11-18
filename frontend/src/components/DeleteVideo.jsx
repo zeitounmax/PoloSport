@@ -44,7 +44,7 @@ function DeleteVideo() {
         selectedVideos.map(async (videoId) => {
           await fetch(
             `${
-              import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5002"
+              import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
             }/videos/${videoId}`,
             {
               method: "DELETE",
@@ -67,14 +67,23 @@ function DeleteVideo() {
     }
   };
 
-	return (
+  return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-lg w-full">
         <h1 className="text-2xl font-semibold mb-6">Supprimer une vidéo</h1>
 
         <div className="mb-4">
-          <label htmlFor="choiceCategory" className="block text-sm font-medium text-gray-600">Catégorie :</label>
-          <select className="mt-2 p-3 w-full border rounded-md" value={selectedCategory} onChange={handleCategoryChange}>
+          <label
+            htmlFor="choiceCategory"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Catégorie :
+          </label>
+          <select
+            className="mt-2 p-3 w-full border rounded-md"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
             <option value="">-- Toutes les vidéos : --</option>
             {categories.map((category) => (
               <option key={category.id} value={category.title}>
@@ -85,10 +94,16 @@ function DeleteVideo() {
         </div>
 
         <div className="action-section mt-4">
-          <button type="button" onClick={handleDeleteSelectedVideos} className="w-full bg-red-500 text-white p-3 rounded-md hover:bg-red-600 transition">
+          <button
+            type="button"
+            onClick={handleDeleteSelectedVideos}
+            className="w-full bg-red-500 text-white p-3 rounded-md hover:bg-red-600 transition"
+          >
             Supprimer vidéo sélectionnée
           </button>
-          {message && <p className="text-center mt-4 text-red-500">{message}</p>}
+          {message && (
+            <p className="text-center mt-4 text-red-500">{message}</p>
+          )}
         </div>
 
         {videos
@@ -98,7 +113,10 @@ function DeleteVideo() {
               : video.id
           )
           .map((video) => (
-            <div className="p-4 mb-4 border rounded-md flex items-center" key={video.id}>
+            <div
+              className="p-4 mb-4 border rounded-md flex items-center"
+              key={video.id}
+            >
               <input
                 type="checkbox"
                 checked={selectedVideos.includes(video.id)}

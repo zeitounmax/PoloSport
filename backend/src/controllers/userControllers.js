@@ -35,7 +35,7 @@ const edit = (req, res) => {
 
   user.id = parseInt(req.params.id, 10);
 
-  models.item
+  models.user
     .update(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -58,7 +58,7 @@ const add = (req, res) => {
   models.user
     .insert(user)
     .then(([result]) => {
-      res.location(`/items/${result.insertId}`).sendStatus(201);
+      res.location(`/users/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -82,10 +82,30 @@ const destroy = (req, res) => {
     });
 };
 
+// Méthode pour gérer les tentatives de connexion
+const login = (req, res) => {
+  const { username, password } = req.body;
+
+  models.user
+    .findByNameWithHashedPassword(username)
+    .then(([rows]) => {
+      if (!rows.length || !verifyPassword(password, rows[0].hashedPassword)) {
+        res.sendStatus(401); // Non autorisé
+      } else {
+        res.send({ message: "Connexion réussie", user: rows[0] });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  login,
 };
