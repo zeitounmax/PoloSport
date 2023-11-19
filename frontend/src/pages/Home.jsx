@@ -26,21 +26,33 @@ function Home() {
   const hockeyVideos = getVideosByCategory(5);
 
   return (
-    <div className=" bg-gray-50 dark:bg-gray-900 text-white">
-      <VideoCarousel
-        slideNumber={3}
-        videos={suggestedVideos}
-        name="Suggestions"
-      />
-      <VideoCarousel slideNumber={3} videos={footballVideos} name="Football" />
-      <VideoCarousel
-        slideNumber={3}
-        videos={basketballVideos}
-        name="Basketball"
-      />
-      <VideoCarousel slideNumber={3} videos={tennisVideos} name="Tennis" />
-      <VideoCarousel slideNumber={3} videos={natationVideos} name="Natation" />
-      <VideoCarousel slideNumber={3} videos={hockeyVideos} name="Hockey" />
+    <div className="bg-gray-50 dark:bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-8">
+          <VideoCarousel
+            slideNumber={3}
+            videos={suggestedVideos}
+            name="Suggestions"
+          />
+          <VideoCarousel
+            slideNumber={3}
+            videos={footballVideos}
+            name="Football"
+          />
+          <VideoCarousel
+            slideNumber={3}
+            videos={basketballVideos}
+            name="Basketball"
+          />
+          <VideoCarousel slideNumber={3} videos={tennisVideos} name="Tennis" />
+          <VideoCarousel
+            slideNumber={3}
+            videos={natationVideos}
+            name="Natation"
+          />
+          <VideoCarousel slideNumber={3} videos={hockeyVideos} name="Hockey" />
+        </div>
+      </div>
     </div>
   );
 }

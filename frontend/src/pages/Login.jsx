@@ -40,12 +40,14 @@ function Login() {
   };
 
   return (
-    <div className="header-form flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center items-center">
       <form
         onSubmit={handleSubmit}
         className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-md w-full"
       >
-        <p className="text-2xl font-semibold mb-6">Connectez-vous</p>
+        <p className="text-2xl font-semibold mb-6 text-center">
+          Connectez-vous
+        </p>
 
         <div className="mb-4">
           <label
@@ -85,7 +87,7 @@ function Login() {
         </button>
 
         <div className="text-center mt-4">
-          <p>Vous n'avez pas un compte ? </p>
+          <p>Vous n'avez pas de compte ? </p>
           <Link to="/inscription" className="text-blue-500 hover:underline">
             S'inscrire
           </Link>

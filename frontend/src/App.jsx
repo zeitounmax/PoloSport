@@ -20,12 +20,12 @@ function App() {
   const { token, isAdmin } = useAuth();
 
   return (
-    <div className="App">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
-      <div className="flex">
-        <CategoryBar className="w-20" />
+      <div className="flex flex-col md:flex-row">
+        <CategoryBar className="w-full md:w-1/5" />
         <div className="flex-grow">
-          <main className="main">
+          <main className="main p-4">
             <VideoProvider>
               <Routes>
                 <Route path="/" element={<Home />} />

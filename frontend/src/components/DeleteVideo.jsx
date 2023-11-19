@@ -69,7 +69,7 @@ function DeleteVideo() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-lg w-full">
+      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md w-full max-w-lg">
         <h1 className="text-2xl font-semibold mb-6">Supprimer une vidéo</h1>
 
         <div className="mb-4">

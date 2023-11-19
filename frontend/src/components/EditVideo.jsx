@@ -90,12 +90,21 @@ function EditVideo() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md max-w-lg w-full">
+      <div className="bg-white bg-opacity-75 p-8 rounded-xl shadow-md w-full max-w-lg">
         <h1 className="text-2xl font-semibold mb-6">Modifier une vidéo</h1>
 
         <div className="mb-4">
-          <label htmlFor="choiceCategory" className="block text-sm font-medium text-gray-600">Catégorie :</label>
-          <select className="mt-2 p-3 w-full border rounded-md" value={selectedCategory} onChange={handleCategoryChange}>
+          <label
+            htmlFor="choiceCategory"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Catégorie :
+          </label>
+          <select
+            className="mt-2 p-3 w-full border rounded-md"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
             <option value="">-- Toutes les vidéos : --</option>
             {categories.map((category) => (
               <option key={category.id} value={category.title}>
@@ -106,10 +115,16 @@ function EditVideo() {
         </div>
 
         <div className="action-section mt-4">
-          <button type="button" onClick={handleUpdateVideos} className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition">
+          <button
+            type="button"
+            onClick={handleUpdateVideos}
+            className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition"
+          >
             Modifier vidéo sélectionnée
           </button>
-          {message && <p className="text-center mt-4 text-green-500">{message}</p>}
+          {message && (
+            <p className="text-center mt-4 text-green-500">{message}</p>
+          )}
         </div>
 
         {videos
@@ -129,7 +144,12 @@ function EditVideo() {
               <h5 className="mt-2">{video.description}</h5>
 
               <div className="mt-2">
-                <label htmlFor={`updatedTitle_${video.id}`} className="block text-sm font-medium text-gray-600">Nouveau titre :</label>
+                <label
+                  htmlFor={`updatedTitle_${video.id}`}
+                  className="block text-sm font-medium text-gray-600"
+                >
+                  Nouveau titre :
+                </label>
                 <input
                   type="text"
                   id={`updatedTitle_${video.id}`}
@@ -141,7 +161,12 @@ function EditVideo() {
               </div>
 
               <div className="mt-2">
-                <label htmlFor={`updatedDescription_${video.id}`} className="block text-sm font-medium text-gray-600">Nouvelle description :</label>
+                <label
+                  htmlFor={`updatedDescription_${video.id}`}
+                  className="block text-sm font-medium text-gray-600"
+                >
+                  Nouvelle description :
+                </label>
                 <textarea
                   id={`updatedDescription_${video.id}`}
                   name="description"
