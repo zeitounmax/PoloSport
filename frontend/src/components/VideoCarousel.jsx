@@ -10,14 +10,13 @@ function VideoCarousel({ videos, name, slideNumber }) {
   const { token } = useAuth();
   const [slideNum, setSlideNum] = useState(slideNumber);
 
-  // Fonction pour mettre à jour le nombre de diapositives en fonction de la largeur de l'écran
   const updateSlidesNumber = () => {
     if (window.innerWidth <= 768) {
-      setSlideNum(1); // 1 diapositive pour les petits écrans
+      setSlideNum(1);
     } else if (window.innerWidth <= 1024) {
-      setSlideNum(2); // 2 diapositives pour les écrans moyens
+      setSlideNum(2);
     } else {
-      setSlideNum(slideNumber); // Nombre original de diapositives pour les grands écrans
+      setSlideNum(slideNumber);
     }
   };
 
